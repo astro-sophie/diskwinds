@@ -1,5 +1,6 @@
 import matplotlib
 from radmc3dPy.image import *
+from parameters import *
 import matplotlib.pyplot as plt
 from matplotlib import cm
 import matplotlib.pylab as plb
@@ -147,8 +148,6 @@ def plotImage2(image=None, flux=0, arcsec=False, au=False, log=False, dpc=None, 
     plb.show()
     return {'implot':implot, 'cbar':cbar}
 
-distance = 140 #pc
-
 fig1=plt.figure(figsize=(6,6))
 plt.ioff()
 
@@ -157,7 +156,7 @@ img = readImage()
 image_data = img.image.flatten()
 total_flux = np.sum(image_data)
     
-result = plotImage2(img, flux=total_flux, log=True, maxlog=15, cmap=cm.hot, bunit='snu', dpc=distance, arcsec=True)
+result = plotImage2(img, flux=total_flux, log=True, maxlog=max_log, cmap=cm.hot, bunit='snu', dpc=distance, arcsec=True)
 
 plt.savefig('output.png')
 plt.close()

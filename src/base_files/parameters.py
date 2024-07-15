@@ -9,16 +9,17 @@ MU = 2.3e-24    								# Mean molecular weight in grams
 
 # Star Parameters
 GM_star = 6.674e25  								# Gravitational parameter for the star
+distance = 140									# Distance in parsecs
 
 # Wind Parameters
 M_dot_w = 1e20  								# Wind mass loss rate in grams/second
 lmbda = 1.6     								# Alfven lever parameter
 d = -5 * AU     								# Distance of wind source point below the origin
 p = 3.4959999999999996  							# Exponent in mass loss rate calculation
-temp0 = 100 									# Wind temperature (constant for now)
+temp0 = 2000									# Wind temperature (constant for now)
 
 # Line parameters 
-molecule_name = "co"
+molecule_name = "h2"
 abun = 1e-4									# Abundance of given molecule
 fact = abun/(2.3*mp)								# Factor by which gas density will be multiplied to determine molecule number density
 
@@ -31,8 +32,7 @@ k = ((p + 2) * M_dot_w) / (2 * np.pi * (r_out**(p + 2) - r_in**(p + 2))) 	# prop
 nphot = 1e7									# Number of photon "packages" RADMC will create (divides luminosity into discrete packets)
 
 # Grid parameters
-nx, ny, nz = 64, 64, 64								# Number of cells in each direction
-expected_entries = nx*ny*nz							# Number of expected values in grid arrays
+nx, ny, nz = 128,128,128								# Number of cells in each direction
 sizex = 300 * AU								# Size across the x direction
 sizey = 300 * AU								# Size across the y direction
 sizez = 300 * AU								# Size across the z direction
@@ -68,3 +68,9 @@ zc = 0.5 * (zi[0:nz] + zi[1:nz + 1])
 # RADMC3D settings (don't change without reading the documentation)
 scattering_mode_max = 0								# Gives scattering information; if 0, isotropic scattering
 tgas_eq_tdust = 0								# Tells RADMC whether to interpret gas and dust temperatures as equal
+
+# Imaging settings
+wavelength = 4.69								# Wavelength of desired transition for imaging, in micrometers
+low_x, up_x = -260, 260								# Limits for plotting on x-axis, in AU (from center at specified distance)
+low_y, up_y = -260, 260								# Limits for plotting on y-axis, in AU (from center at specified distance)
+max_log = 50									# Defines maximum for colorbar in logscale
