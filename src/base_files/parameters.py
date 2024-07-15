@@ -1,3 +1,4 @@
+import subprocess
 import numpy as np
 from radmc3dPy.natconst import *
 
@@ -70,7 +71,14 @@ scattering_mode_max = 0								# Gives scattering information; if 0, isotropic s
 tgas_eq_tdust = 0								# Tells RADMC whether to interpret gas and dust temperatures as equal
 
 # Imaging settings
-wavelength = 4.69								# Wavelength of desired transition for imaging, in micrometers
-low_x, up_x = -260, 260								# Limits for plotting on x-axis, in AU (from center at specified distance)
-low_y, up_y = -260, 260								# Limits for plotting on y-axis, in AU (from center at specified distance)
 max_log = 50									# Defines maximum for colorbar in logscale
+
+
+# Shell inputs--still troubleshooting
+n_threads = 4									# Defines number of parallel threads, larger = shorter runtime
+wavelength = 4.6947								# Wavelength of desired transition for imaging, in micrometers
+inclination = 85								# Viewing inclination from vertical, in degrees
+obs_angle = 0									# Observing angle on disk plane, in degrees
+low_x, up_x = -264, 264								# Limits for plotting on x-axis, in AU (from center at specified distance)
+low_y, up_y = -264, 264								# Limits for plotting on y-axis, in AU (from center at specified distance)
+n_pixels = 40									# Number of pixels in image, larger = more refined
