@@ -7,6 +7,6 @@ It is recommended to make a new folder for each model you run, first copying the
 To use, follow these steps:
 1. Navigate to the model directory
 2. Make any desired modifications to the parameters.py input file
-3. Execute imaging.sh to generate an image from your provided parameters and the settings in imaging.sh
+3. Execute imaging.sh to run RADMC and generate an image from your provided parameters and the settings in imaging.sh
 
 Currently, this program is only capable of modeling a single molecule/atom at a time. 
