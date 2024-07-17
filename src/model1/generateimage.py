@@ -142,7 +142,7 @@ def plotImage2(image=None, flux=0, arcsec=False, au=False, log=False, dpc=None, 
     implot = plb.imshow(data, extent=ext, cmap=cmap, interpolation=interpolation, **kwargs)
     plb.xlabel(xlab)
     plb.ylabel(ylab)
-    plb.title(r'$\lambda$='+("%.5f"%image.wav[ifreq])+r'$\mu$m, F='+str(flux)+'Jy')
+    plb.title(r'$\lambda$='+("%.5f"%image.wav[ifreq])+r'$\mu$m, F='+str(flux)+'ergs/s/cm^2')
     cbar = plb.colorbar(implot)
     cbar.set_label(cb_label)
     plb.show()
@@ -153,9 +153,12 @@ plt.ioff()
 
 img = readImage() 
 
+pixsize_x, pixsize_y = img.sizepix_x, img.sizepix_y
+dA = (pixsize_x * pixsize_y)/((distance*3.086e18)**2)
+
 image_data = img.image.flatten()
-total_flux = np.sum(image_data)
-    
+total_flux = np.sum(image_data)*dA
+
 result = plotImage2(img, flux=total_flux, log=True, maxlog=max_log, cmap=cm.hot, bunit='snu', dpc=distance, arcsec=True)
 
 plt.savefig('output.png')
