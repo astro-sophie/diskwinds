@@ -20,7 +20,7 @@ p = 3.4959999999999996  							# Exponent in mass loss rate calculation
 temp0 = 2000									# Wind temperature (constant for now)
 
 # Line parameters 
-molecule_name = "co"
+molecule_name = "h2"
 abun = 1e-4									# Abundance of given molecule
 fact = abun/(2.3*mp)								# Factor by which gas density will be multiplied to determine molecule number density
 
