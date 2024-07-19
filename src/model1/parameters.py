@@ -39,7 +39,7 @@ sizey = 300 * AU								# Size across the y direction
 sizez = 300 * AU								# Size across the z direction
 
 # Model parameters
-dusttogas = 1e-6								# Ratio of dust to gas (for calculating dust density from gas density)
+dusttogas = 1e-4								# Ratio of dust to gas (for calculating dust density from gas density)
 vturb_factor = 6427.0								# Factor by which sqrt(tgas) is multiplied to determine gas turbulence velocities
 
 # Star parameters from constants file
