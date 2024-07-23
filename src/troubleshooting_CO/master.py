@@ -42,8 +42,8 @@ def calculate_vp(d, GM_star, lmbda, r_base):
 def wind_density(x_values, y_values, z_values, delta):
     abs_cos_delta = np.abs(np.cos(delta))
     vals = np.full((nx, ny, nz), 0)
-    min_val = 0.73 # minimum cos(delta) value
-    max_val = 0.75 # maximum cos(delta) value
+    min_val = 0.7 # minimum cos(delta) value
+    max_val = 0.71 # maximum cos(delta) value
     n_filled = 0
     for i in range(0, nx):
         for j in range(0, ny):

@@ -151,13 +151,15 @@ def plotImage2(image=None, flux=0, arcsec=False, au=False, log=False, dpc=None, 
 fig1=plt.figure(figsize=(6,6))
 plt.ioff()
 
-img = readImage() 
+img = readImage()
+image_data = img.image.flatten() 
 
-pixsize_x, pixsize_y = img.sizepix_x, img.sizepix_y
-dA = (pixsize_x * pixsize_y)/((distance*3.086e18)**2)
+distance = 140 #pc
 
-image_data = img.image.flatten()
-total_flux = np.sum(image_data)*dA
+data = image_data * (image.sizepix_x * image.sizepix_y / (dpc*pc)**2. * 1e23)
+data_sum = np.sum(data)
+
+total_flux = data_sum
 
 result = plotImage2(img, flux=total_flux, log=True, maxlog=max_log, cmap=cm.hot, bunit='snu', dpc=distance, arcsec=True)
 
