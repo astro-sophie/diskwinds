@@ -33,10 +33,10 @@ k = ((p + 2) * M_dot_w) / (2 * np.pi * (r_out**(p + 2) - r_in**(p + 2))) 	# prop
 nphot = 1e7									# Number of photon "packages" RADMC will create (divides luminosity into discrete packets)
 
 # Grid parameters
-nx, ny, nz = 64, 64, 64								# Number of cells in each direction
-sizex = 300 * AU								# Size across the x direction
-sizey = 300 * AU								# Size across the y direction
-sizez = 300 * AU								# Size across the z direction
+nx, ny, nz = 128,128,128							# Number of cells in each direction
+sizex = 420 * AU								# Size across the x direction
+sizey = 420 * AU								# Size across the y direction
+sizez = 420 * AU								# Size across the z direction
 
 # Model parameters
 dusttogas = 1e-4								# Ratio of dust to gas (for calculating dust density from gas density)

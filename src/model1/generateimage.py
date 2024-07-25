@@ -124,7 +124,7 @@ def plotImage2(image=None, flux=0, arcsec=False, au=False, log=False, dpc=None, 
         ylab = 'Y [AU]'
     elif arcsec:
         x = image.x/1.496e13/dpc
-        y = (image.y/1.496e13/dpc)+0.85 # added to match JWST image
+        y = (image.y/1.496e13/dpc) # added to match JWST image
         xlab = 'Offset ["]'
         ylab = 'Offset ["]'
     else:
@@ -142,9 +142,11 @@ def plotImage2(image=None, flux=0, arcsec=False, au=False, log=False, dpc=None, 
     implot = plb.imshow(data, extent=ext, cmap=cmap, interpolation=interpolation, **kwargs)
     plb.xlabel(xlab)
     plb.ylabel(ylab)
+    plb.xticks([-1.5,-1.0,-0.5,0.0,0.5,1.0,1.5])
+    plb.yticks([0.0,0.5, 1.0, 1.5])
     plb.ylim(0,1.7)
     plb.xlim(-1.5,1.5)
-    plb.title(r'$\lambda$='+("%.5f"%image.wav[ifreq])+r'$\mu$m, F='+str(flux)+'ergs/s/cm^2')
+    plb.title(r'$\lambda$='+("%.5f"%image.wav[ifreq])+r'$\mu$m, F='+str(flux)+r'ergs/s/cm$^2$')
     cbar = plb.colorbar(implot)
     cbar.set_label(cb_label)
     plb.show()
@@ -161,8 +163,9 @@ c = 3e10 #cm/s
 line_peak = wavelength # from parameters.py, in um
 conversion_factor = (img.sizepix_x*img.sizepix_y)/((dist_pc*pc)**2) # ergs/s/cm^2/Hz/ster to ergs/s/cm^2/Hz/pixel
 total_flux = np.sum(image_data)/(line_peak)*(c/(line_peak*1e-4))*conversion_factor # ergs/s/cm^2
+total_flux = f"{total_flux:.2e}"
 
-result = plotImage2(img, flux=total_flux, log=True, maxlog=max_log, cmap=cm.hot, bunit='snu', dpc=dist_pc, arcsec=True)
+result = plotImage2(img, flux=total_flux, log=True, maxlog=max_log, cmap=cm.hot, bunit='norm', dpc=dist_pc, arcsec=True)
 
 plt.savefig('output.png')
 plt.close()
