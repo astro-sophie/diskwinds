@@ -15,18 +15,18 @@ distance = 140									# Distance in parsecs
 # Wind Parameters
 M_dot_w = 1e20  								# Wind mass loss rate in grams/second
 lmbda = 1.6     								# Alfven lever parameter
-d = -15 * AU     								# Distance of wind source point below the origin
+d = -25 * AU     								# Distance of wind source point below the origin
 p = 3.4959999999999996  							# Exponent in mass loss rate calculation
-temp0 = 2000									# Wind temperature (constant for now)
+temp0 = 1500									# Wind temperature (constant for now)
 
 # Line parameters 
 molecule_name = "h2"
-abun = 1e-4									# Abundance of given molecule
+abun = 1e-3									# Abundance of given molecule
 fact = abun/(2.3*mp)								# Factor by which gas density will be multiplied to determine molecule number density
 
 # Radial Boundaries for Mass Loss Calculation
-r_in = 1 * AU  								# Inner boundary radius
-r_out = 5 * AU  								# Outer boundary radius
+r_in = 3 * AU  								# Inner boundary radius
+r_out = 6 * AU  								# Outer boundary radius
 k = ((p + 2) * M_dot_w) / (2 * np.pi * (r_out**(p + 2) - r_in**(p + 2))) 	# proportionality constant for mass loss rate
 
 # Monte Carlo parameters

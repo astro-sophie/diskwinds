@@ -124,7 +124,7 @@ def plotImage2(image=None, flux=0, arcsec=False, au=False, log=False, dpc=None, 
         ylab = 'Y [AU]'
     elif arcsec:
         x = image.x/1.496e13/dpc
-        y = (image.y/1.496e13/dpc) # added to match JWST image
+        y = (image.y/1.496e13/dpc) + ((max(image.y/1.496e13/dpc)-min(image.y/1.496e13/dpc))/2) + 0.1
         xlab = 'Offset ["]'
         ylab = 'Offset ["]'
     else:
@@ -144,15 +144,15 @@ def plotImage2(image=None, flux=0, arcsec=False, au=False, log=False, dpc=None, 
     plb.ylabel(ylab)
     plb.xticks([-1.5,-1.0,-0.5,0.0,0.5,1.0,1.5])
     plb.yticks([0.0,0.5, 1.0, 1.5])
-    plb.ylim(0,1.7)
-    plb.xlim(-1.5,1.5)
+    plb.ylim(0, 1.7)
+    plb.xlim(-1.4,1.4)
     plb.title(r'$\lambda$='+("%.5f"%image.wav[ifreq])+r'$\mu$m, F='+str(flux)+r'ergs/s/cm$^2$')
     cbar = plb.colorbar(implot)
     cbar.set_label(cb_label)
     plb.show()
     return {'implot':implot, 'cbar':cbar}
 
-fig1=plt.figure(figsize=(6,6))
+fig1=plt.figure(figsize=(10,6))
 plt.ioff()
 
 img = readImage()
