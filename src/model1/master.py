@@ -41,7 +41,18 @@ def calculate_vp(d, GM_star, lmbda, r_base):
 
 def wind_density(m_dot_wi, vp_wi_l, delta, d, D_wi_l):
     abs_cos_delta = np.abs(np.cos(delta))					# Calculate the absolute value of the cosine of the angle
-    return (m_dot_wi / (vp_wi_l * abs_cos_delta)) * (np.abs(d) / (D_wi_l * abs_cos_delta)) ** 2		# Calculate the wind density
+    wind_density = (m_dot_wi / (vp_wi_l * abs_cos_delta)) * (np.abs(d) / (D_wi_l * abs_cos_delta)) ** 2		# Calculate the wind density
+    #vals = np.full((nx,ny,nz),0)
+    #n_filled = 0
+    #for i in range(0,nx):
+    #	for j in range(0,ny):
+    #		for k in range(0,nz):
+    #			if wind_density[i,j,k] != 0:
+    #				vals[i,j,k] = 1
+    #			else:
+    #				vals[i,j,k] = 0
+    #vals = vals*constant_density
+    return wind_density
 
 # Main Execution
 try:

@@ -165,7 +165,7 @@ conversion_factor = (img.sizepix_x*img.sizepix_y)/((dist_pc*pc)**2) # ergs/s/cm^
 total_flux = np.sum(image_data)/(line_peak)*(c/(line_peak*1e-4))*conversion_factor # ergs/s/cm^2
 total_flux = f"{total_flux:.2e}"
 
-result = plotImage2(img, flux=total_flux, log=True, maxlog=max_log, cmap=cm.hot, bunit='norm', dpc=dist_pc, arcsec=True)
+result = plotImage2(img, flux=total_flux, log=True, maxlog=max_log, cmap=cm.hot, bunit='snu', dpc=dist_pc, arcsec=True)
 
 plt.savefig('output.png')
 plt.close()

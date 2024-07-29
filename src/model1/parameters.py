@@ -22,7 +22,6 @@ temp0 = 2000									# Wind temperature (constant for now)
 # Line parameters 
 molecule_name = "h2"
 abun = 1e-3									# Abundance of given molecule
-fact = abun/(2.3*mp)								# Factor by which gas density will be multiplied to determine molecule number density
 
 # Radial Boundaries for Mass Loss Calculation
 r_in = 3 * AU  								# Inner boundary radius
@@ -67,12 +66,11 @@ yc = 0.5 * (yi[0:ny] + yi[1:ny + 1])
 zc = 0.5 * (zi[0:nz] + zi[1:nz + 1])
 
 # RADMC3D settings (don't change without reading the documentation)
-scattering_mode_max = 0								# Gives scattering information; if 0, isotropic scattering
+scattering_mode_max = 1								# Gives scattering information; if 0, isotropic scattering
 tgas_eq_tdust = 0								# Tells RADMC whether to interpret gas and dust temperatures as equal
 
 # Imaging settings
-max_log = 50									# Defines maximum for colorbar in logscale
-
+max_log = 30									# Defines maximum for colorbar in logscale
 
 # Shell inputs--still troubleshooting
 n_threads = 4									# Defines number of parallel threads, larger = shorter runtime
