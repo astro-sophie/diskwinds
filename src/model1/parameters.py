@@ -17,7 +17,7 @@ M_dot_w = 1e20  								# Wind mass loss rate in grams/second
 lmbda = 1.6     								# Alfven lever parameter
 d = -25 * AU     								# Distance of wind source point below the origin
 p = 3.4959999999999996  							# Exponent in mass loss rate calculation
-temp0 = 1500									# Wind temperature (constant for now)
+temp0 = 2000									# Wind temperature (constant for now)
 
 # Line parameters 
 molecule_name = "h2"
@@ -39,7 +39,7 @@ sizey = 420 * AU								# Size across the y direction
 sizez = 420 * AU								# Size across the z direction
 
 # Model parameters
-dusttogas = 1e-4								# Ratio of dust to gas (for calculating dust density from gas density)
+dusttogas = 1e-5								# Ratio of dust to gas (for calculating dust density from gas density)
 vturb_factor = 6427.0								# Factor by which sqrt(tgas) is multiplied to determine gas turbulence velocities
 
 # Star parameters from constants file

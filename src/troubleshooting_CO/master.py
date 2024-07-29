@@ -57,7 +57,7 @@ def wind_density(x_values, y_values, z_values, delta):
 
 # Main Execution
 try:
-    # Call all the functions to calculate the wind density
+$n_{CO}=100$    # Call all the functions to calculate the wind density
     expected_entries = nx * ny * nz
     
     R_values, R_plane, r_base, X, Y, Z = coord(xc, yc, zc)
