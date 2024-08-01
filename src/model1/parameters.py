@@ -17,7 +17,7 @@ M_dot_w = 1e20  								# Wind mass loss rate in grams/second
 lmbda = 1.6     								# Alfven lever parameter
 d = -25 * AU     								# Distance of wind source point below the origin
 p = 3.4959999999999996  							# Exponent in mass loss rate calculation
-temp0 = 2000									# Wind temperature (constant for now)
+temp0 = 1000									# Wind temperature (constant for now)
 
 # Line parameters 
 molecule_name = "h2"
@@ -66,15 +66,15 @@ yc = 0.5 * (yi[0:ny] + yi[1:ny + 1])
 zc = 0.5 * (zi[0:nz] + zi[1:nz + 1])
 
 # RADMC3D settings (don't change without reading the documentation)
-scattering_mode_max = 1								# Gives scattering information; if 0, isotropic scattering
+scattering_mode_max = 0								# Gives scattering information; if 0, isotropic scattering
 tgas_eq_tdust = 0								# Tells RADMC whether to interpret gas and dust temperatures as equal
 
 # Imaging settings
-max_log = 30									# Defines maximum for colorbar in logscale
+max_log = 1									# Defines maximum for colorbar in logscale
 
 # Shell inputs--still troubleshooting
 n_threads = 4									# Defines number of parallel threads, larger = shorter runtime
-wavelength = 4.6947								# Wavelength of desired transition for imaging, in micrometers
+wavelength = 4.69125225								# Wavelength of desired transition for imaging, in micrometers
 inclination = 85								# Viewing inclination from vertical, in degrees
 obs_angle = 0									# Observing angle on disk plane, in degrees
 low_x, up_x = -264, 264								# Limits for plotting on x-axis, in AU (from center at specified distance)

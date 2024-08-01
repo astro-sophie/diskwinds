@@ -159,12 +159,13 @@ except Exception as e:
 
 try:
     with open('radmc3d.inp','w+') as f:				# see section 16.1 of the RADMC documentation for more information
-    	#f.write('incl_dust = 0\n')
+    	f.write('incl_dust = 1\n')
     	f.write('incl_lines = 1\n')
     	f.write('nphot = %d\n'%(nphot))				# number of photon packages for the scattering Monte Carlo simulations
-#    	f.write('scattering_mode_max = '+str(scattering_mode_max)+'\n')   # Put this to 1 for isotropic scattering
+    	f.write('scattering_mode_max = '+str(scattering_mode_max)+'\n')   # Put this to 1 for isotropic scattering
     	f.write('lines_mode = 1\n')
-    	f.write('tgas_eq_tdust = 0')	# tells radmc whether or not to read the dust_temperature.inp file and equate it to the gas temperature
+    	f.write('tgas_eq_tdust = 0\n')	# tells radmc whether or not to read the dust_temperature.inp file and equate it to the gas temperature	
+    	f.write('lines_widthmargin = 1000')
     print("radmc3d.inp written successfully.")
 except Exception as e:
     print(f"Error writing radmc3d.inp: {e}")
