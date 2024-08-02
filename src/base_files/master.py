@@ -41,7 +41,8 @@ def calculate_vp(d, GM_star, lmbda, r_base):
 
 def wind_density(m_dot_wi, vp_wi_l, delta, d, D_wi_l):
     abs_cos_delta = np.abs(np.cos(delta))					# Calculate the absolute value of the cosine of the angle
-    return (m_dot_wi / (vp_wi_l * abs_cos_delta)) * (np.abs(d) / (D_wi_l * abs_cos_delta)) ** 2		# Calculate the wind density
+    wind_density = (m_dot_wi / (vp_wi_l * abs_cos_delta)) * (np.abs(d) / (D_wi_l * abs_cos_delta)) ** 2		# Calculate the wind density
+    return wind_density
 
 # Main Execution
 try:
@@ -53,7 +54,7 @@ try:
     m_dot_wi = calculate_mass_loss_rate(r_base, M_dot_w, p, r_in, r_out, R_plane, k)
     delta = calculate_angle(R_plane, zc)
     D_wi_l = get_source_point(R_plane, zc, d)
-    # temp0_array = calculate_temperature(r_base, z_values)
+    # temp0_array = calculate_temperature(r_base, z_values) for implementation of a temperature function, currently temperature is simply constant
     temp0_array = np.full((expected_entries,), temp0)
     density = wind_density(m_dot_wi, vp_wi_l, delta, d, D_wi_l)
 

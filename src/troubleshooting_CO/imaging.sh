@@ -1,5 +1,0 @@
-python3 master.py
-python3 problem_setup.py
-radmc3d mctherm setthreads 4
-radmc3d image lambda 1301.3 incl 0 phi 0 zoomau -300 300 -300 300
-python3 generateimage.py

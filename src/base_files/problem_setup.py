@@ -28,8 +28,9 @@ try: # creating 3D mesh grid, establishing parameters
     tgas = temp0 						# temperature currently constant, will eventually be calculated as a function of radius
     vturb = vturb_factor * np.sqrt(tgas) 			# turbulent velocity from gas kinematics
 
-    n_molecule = rhogas*fact 					# number density of the molecule being analyzed
-    
+    n_h = rhogas/(2.3*mp)					# number density of H for calculating abundance
+    n_molecule = abun*n_h 					# number density of the molecule being analyzed
+
     print("Calculations completed successfully.")
 except Exception as e:
     print(f"Error in calculations: {e}")
@@ -158,9 +159,13 @@ except Exception as e:
 
 try:
     with open('radmc3d.inp','w+') as f:				# see section 16.1 of the RADMC documentation for more information
-        f.write('nphot = %d\n'%(nphot))				# number of photon packages for the scattering Monte Carlo simulations
-        f.write('scattering_mode_max = '+str(scattering_mode_max)+'\n')   # Put this to 1 for isotropic scattering
-        f.write('tgas_eq_tdust   = '+str(tgas_eq_tdust))	# tells radmc whether or not to read the dust_temperature.inp file and equate it to the gas temperature
+    	f.write('incl_dust = 1\n')
+    	f.write('incl_lines = 1\n')
+    	f.write('nphot = %d\n'%(nphot))				# number of photon packages for the scattering Monte Carlo simulations
+    	f.write('scattering_mode_max = '+str(scattering_mode_max)+'\n')   # Put this to 1 for isotropic scattering
+    	f.write('lines_mode = 1\n')
+    	f.write('tgas_eq_tdust = 0\n')	# tells radmc whether or not to read the dust_temperature.inp file and equate it to the gas temperature	
+    	f.write('lines_widthmargin = 1000')
     print("radmc3d.inp written successfully.")
 except Exception as e:
     print(f"Error writing radmc3d.inp: {e}")

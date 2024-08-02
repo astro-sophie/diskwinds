@@ -5,6 +5,7 @@ import matplotlib.pyplot as plt
 from matplotlib import cm
 import matplotlib.pylab as plb
 
+# A modified version of the RADMC function for plotting images
 def plotImage2(image=None, flux=0, arcsec=False, au=False, log=False, dpc=None, maxlog=None, saturate=None, bunit='norm', \
         ifreq=0, cmask_rad=None, interpolation='nearest', cmap=plb.cm.gist_gray, stokes='I', **kwargs):
     pc   = 3.08572e18
@@ -117,6 +118,7 @@ def plotImage2(image=None, flux=0, arcsec=False, au=False, log=False, dpc=None, 
     else:
         cb_bound = (data.min(), data.max())
 # Select the coordinates of the data
+#  No matter the size inputs you give to RADMC, it will assign the center of the image as (0,0). If you want to change this, you can add an offset to the below coordinates.
     if au:
         x = image.x/1.496e13
         y = image.y/1.496e13
@@ -148,7 +150,7 @@ def plotImage2(image=None, flux=0, arcsec=False, au=False, log=False, dpc=None, 
     plb.show()
     return {'implot':implot, 'cbar':cbar}
 
-fig1=plt.figure(figsize=(6,6))
+fig1=plt.figure(figsize=(10,6))
 plt.ioff()
 
 img = readImage()
@@ -161,7 +163,7 @@ conversion_factor = (img.sizepix_x*img.sizepix_y)/((dist_pc*pc)**2) # ergs/s/cm^
 total_flux = np.sum(image_data)/(line_peak)*(c/(line_peak*1e-4))*conversion_factor # ergs/s/cm^2
 total_flux = f"{total_flux:.2e}"
 
-result = plotImage2(img, flux=total_flux, log=True, maxlog=max_log, cmap=cm.hot, bunit='snu', dpc=dist_pc, arcsec=True)
+result = plotImage2(img, flux=total_flux, log=True, maxlog=max_log, cmap=cm.hot, bunit='norm', dpc=dist_pc, arcsec=True)
 
 plt.savefig('output.png')
 plt.close()

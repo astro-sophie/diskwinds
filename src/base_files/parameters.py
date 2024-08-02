@@ -17,29 +17,28 @@ M_dot_w = 1e20  								# Wind mass loss rate in grams/second
 lmbda = 1.6     								# Alfven lever parameter
 d = -5 * AU     								# Distance of wind source point below the origin
 p = 3.4959999999999996  							# Exponent in mass loss rate calculation
-temp0 = 2000									# Wind temperature (constant for now)
+temp0 = 1000									# Wind temperature (constant for now)
 
 # Line parameters 
-molecule_name = "h2"
+molecule_name = "co"
 abun = 1e-4									# Abundance of given molecule
-fact = abun/(2.3*mp)								# Factor by which gas density will be multiplied to determine molecule number density
 
 # Radial Boundaries for Mass Loss Calculation
 r_in = 0.5 * AU  								# Inner boundary radius
-r_out = 10 * AU  								# Outer boundary radius
+r_out = 5 * AU  								# Outer boundary radius
 k = ((p + 2) * M_dot_w) / (2 * np.pi * (r_out**(p + 2) - r_in**(p + 2))) 	# proportionality constant for mass loss rate
 
 # Monte Carlo parameters
 nphot = 1e7									# Number of photon "packages" RADMC will create (divides luminosity into discrete packets)
 
 # Grid parameters
-nx, ny, nz = 128,128,128								# Number of cells in each direction
-sizex = 300 * AU								# Size across the x direction
-sizey = 300 * AU								# Size across the y direction
-sizez = 300 * AU								# Size across the z direction
+nx, ny, nz = 128,128,128							# Number of cells in each direction
+sizex = 420 * AU								# Size across the x direction
+sizey = 420 * AU								# Size across the y direction
+sizez = 420 * AU								# Size across the z direction
 
 # Model parameters
-dusttogas = 1e-6								# Ratio of dust to gas (for calculating dust density from gas density)
+dusttogas = 1e-5								# Ratio of dust to gas (for calculating dust density from gas density)
 vturb_factor = 6427.0								# Factor by which sqrt(tgas) is multiplied to determine gas turbulence velocities
 
 # Star parameters from constants file
@@ -71,12 +70,11 @@ scattering_mode_max = 0								# Gives scattering information; if 0, isotropic s
 tgas_eq_tdust = 0								# Tells RADMC whether to interpret gas and dust temperatures as equal
 
 # Imaging settings
-max_log = 50									# Defines maximum for colorbar in logscale
+max_log = 1									# Defines maximum for colorbar in logscale
+wavelength = 1301.3								# Wavelength of desired transition for imaging, in micrometers
 
-
-# Shell inputs--still troubleshooting
+# Shell inputs--still in the process of implementing
 n_threads = 4									# Defines number of parallel threads, larger = shorter runtime
-wavelength = 4.6947								# Wavelength of desired transition for imaging, in micrometers
 inclination = 85								# Viewing inclination from vertical, in degrees
 obs_angle = 0									# Observing angle on disk plane, in degrees
 low_x, up_x = -264, 264								# Limits for plotting on x-axis, in AU (from center at specified distance)
