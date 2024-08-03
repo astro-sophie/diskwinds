@@ -159,7 +159,7 @@ except Exception as e:
 
 try:
     with open('radmc3d.inp','w+') as f:				# see section 16.1 of the RADMC documentation for more information
-    	f.write('incl_dust = 0\n')
+    	f.write('incl_dust = 1\n')
     	f.write('incl_lines = 1\n')
     	f.write('nphot = %d\n'%(nphot))				# number of photon packages for the scattering Monte Carlo simulations
     	f.write('scattering_mode_max = 0\n')   # Put this to 1 for isotropic scattering

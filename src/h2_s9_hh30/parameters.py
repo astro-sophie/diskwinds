@@ -70,7 +70,7 @@ scattering_mode_max = 0								# Gives scattering information; if 0, isotropic s
 tgas_eq_tdust = 0								# Tells RADMC whether to interpret gas and dust temperatures as equal
 
 # Imaging settings
-max_log = 1									# Defines maximum for colorbar in logscale
+max_log = 50									# Defines maximum for colorbar in logscale
 
 # Shell inputs--still troubleshooting
 n_threads = 4									# Defines number of parallel threads, larger = shorter runtime
