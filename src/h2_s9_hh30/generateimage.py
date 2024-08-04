@@ -151,21 +151,3 @@ def plotImage2(image=None, flux=0, arcsec=False, au=False, log=False, dpc=None, 
     cbar.set_label(cb_label)
     plb.show()
     return {'implot':implot, 'cbar':cbar}
-
-fig1=plt.figure(figsize=(10,6))
-plt.ioff()
-
-img = readImage()
-image_data = img.image.flatten()  # units of ergs/s/cm^2/Hz/ster
-
-dist_pc = distance #from parameters.py, in pc
-c = 3e10 #cm/s
-line_peak = wavelength # from parameters.py, in um
-conversion_factor = (img.sizepix_x*img.sizepix_y)/((dist_pc*pc)**2) # ergs/s/cm^2/Hz/ster to ergs/s/cm^2/Hz/pixel
-total_flux = np.sum(image_data)/(line_peak)*(c/(line_peak*1e-4))*conversion_factor # ergs/s/cm^2
-total_flux = f"{total_flux:.2e}"
-
-result = plotImage2(img, flux=total_flux, log=True, maxlog=max_log, cmap=cm.hot, bunit='norm', dpc=dist_pc, arcsec=True)
-
-plt.savefig('output.png')
-plt.close()

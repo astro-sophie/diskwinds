@@ -28,9 +28,6 @@ r_in = 3 * AU  								# Inner boundary radius
 r_out = 6 * AU  								# Outer boundary radius
 k = ((p + 2) * M_dot_w) / (2 * np.pi * (r_out**(p + 2) - r_in**(p + 2))) 	# proportionality constant for mass loss rate
 
-# Monte Carlo parameters
-nphot = 1e7									# Number of photon "packages" RADMC will create (divides luminosity into discrete packets)
-
 # Grid parameters
 nx, ny, nz = 128,128,128							# Number of cells in each direction
 sizex = 420 * AU								# Size across the x direction
@@ -40,6 +37,22 @@ sizez = 420 * AU								# Size across the z direction
 # Model parameters
 dusttogas = 1e-5								# Ratio of dust to gas (for calculating dust density from gas density)
 vturb_factor = 6427.0								# Factor by which sqrt(tgas) is multiplied to determine gas turbulence velocities
+
+# RADMC3D settings (don't change without reading the documentation)
+scattering_mode_max = 0                                                         # Gives scattering information; if 0, isotropic scattering
+tgas_eq_tdust = 0                                                               # Tells RADMC whether to interpret gas and dust temperatures as equal
+nphot = 1e7
+n_threads = 12                                                                  # Defines number of parallel threads, larger = shorter runtime
+
+# Imaging settings
+max_log = 1                                                                    # Defines maximum for colorbar in logscale
+wavelength = 4.69125225                                                         # Wavelength of desired transition for imaging, in micrometers
+offline_wavelength = 4.6                                                        # Wavelength for continuum subtraction
+inclination = 85                                                                # Viewing inclination from vertical, in degrees
+phi = 0                                                                         # Observing angle on disk plane, in degrees
+low_x, up_x = -210, 210                                                         # Limits for plotting on x-axis, in AU (from center at specified distance)
+low_y, up_y = 14, 252                                                         # Limits for plotting on y-axis, in AU (from center at specified distance)
+npixx, npixy = 30, 17
 
 # Star parameters from constants file
 mstar = MS									# Stellar mass
@@ -64,19 +77,3 @@ zi = np.linspace(-sizez, sizez, nz + 1)
 xc = 0.5 * (xi[0:nx] + xi[1:nx + 1])						# Grid cell center positions
 yc = 0.5 * (yi[0:ny] + yi[1:ny + 1])
 zc = 0.5 * (zi[0:nz] + zi[1:nz + 1])
-
-# RADMC3D settings (don't change without reading the documentation)
-scattering_mode_max = 0								# Gives scattering information; if 0, isotropic scattering
-tgas_eq_tdust = 0								# Tells RADMC whether to interpret gas and dust temperatures as equal
-
-# Imaging settings
-max_log = 50									# Defines maximum for colorbar in logscale
-
-# Shell inputs--still troubleshooting
-n_threads = 4									# Defines number of parallel threads, larger = shorter runtime
-wavelength = 4.69125225								# Wavelength of desired transition for imaging, in micrometers
-inclination = 85								# Viewing inclination from vertical, in degrees
-obs_angle = 0									# Observing angle on disk plane, in degrees
-low_x, up_x = -264, 264								# Limits for plotting on x-axis, in AU (from center at specified distance)
-low_y, up_y = -264, 264								# Limits for plotting on y-axis, in AU (from center at specified distance)
-n_pixels = 40									# Number of pixels in image, larger = more refined
