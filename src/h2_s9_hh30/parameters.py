@@ -2,6 +2,8 @@ import subprocess
 import numpy as np
 from radmc3dPy.natconst import *
 
+constant_density = 1e-20
+
 # Constants
 AU = 1.493e13  									# AU in cm
 MS = 1.99e+33   								# Solar mass in grams
@@ -17,7 +19,7 @@ M_dot_w = 1e20  								# Wind mass loss rate in grams/second
 lmbda = 1.6     								# Alfven lever parameter
 d = -25 * AU     								# Distance of wind source point below the origin
 p = 3.4959999999999996  							# Exponent in mass loss rate calculation
-temp0 = 2000									# Wind temperature (constant for now)
+temp0 = 1500									# Wind temperature (constant for now)
 
 # Line parameters 
 molecule_name = "h2"
@@ -49,7 +51,7 @@ lines_widthmargin = 24								# Tolerance for line contribution
 n_threads = 12                                                                  # Defines number of parallel threads, larger = shorter runtime
 
 # Imaging settings
-max_log = 3                                                                    # Defines maximum for colorbar in logscale
+max_log = 1                                                                   # Defines maximum for colorbar in logscale
 wavelength = 4.69125225                                                         # Wavelength of desired transition for imaging, in micrometers
 offline_wavelength = 4.6                                                        # Wavelength for continuum subtraction
 inclination = 85                                                                # Viewing inclination from vertical, in degrees
@@ -66,12 +68,13 @@ pstar = np.array([0., 0., 0.])							# Star position (lies at the origin if all 
 
 # Wavelength settings
 # Sets discrete wavelength points for the continuum radiative transfer calculations
-lam1, lam2, lam3, lam4 = 0.1, 7.0, 25.0, 10000.0 				# This and the next line create a staggered wavelength list, with more values at lower wavelengths
-n12, n23, n34 = 100, 30, 30							# Number of values between lam1 & lam2, between lam2 & lam3, between lam3 & lam4
+lam1, lam2, lam3, lam4, lam5 = 0.1, 4.5, 4.8, 25.0, 10000.0 				# This and the next line create a staggered wavelength list, with more values at lower wavelengths
+n12, n23, n34, n45 = 3000, 100000, 3000, 3000							# Number of values between lam1 & lam2, between lam2 & lam3, between lam3 & lam4
 lam12 = np.logspace(np.log10(lam1), np.log10(lam2), n12, endpoint=False)
 lam23 = np.logspace(np.log10(lam2), np.log10(lam3), n23, endpoint=False)
-lam34 = np.logspace(np.log10(lam3), np.log10(lam4), n34, endpoint=True)
-lam = np.concatenate([lam12, lam23, lam34])					# Creates a single array of all provided wavelengths
+lam34 = np.logspace(np.log10(lam3), np.log10(lam4), n34, endpoint=False)
+lam45 = np.logspace(np.log10(lam4), np.log10(lam5), n45, endpoint=True)
+lam = np.concatenate([lam12, lam23, lam34, lam45])					# Creates a single array of all provided wavelengths
 nlam = lam.size
 
 # Grid setup
