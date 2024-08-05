@@ -17,11 +17,11 @@ M_dot_w = 1e20  								# Wind mass loss rate in grams/second
 lmbda = 1.6     								# Alfven lever parameter
 d = -25 * AU     								# Distance of wind source point below the origin
 p = 3.4959999999999996  							# Exponent in mass loss rate calculation
-temp0 = 1000									# Wind temperature (constant for now)
+temp0 = 2000									# Wind temperature (constant for now)
 
 # Line parameters 
 molecule_name = "h2"
-abun = 1e-3									# Abundance of given molecule
+abun = 1e-4									# Abundance of given molecule
 
 # Radial Boundaries for Mass Loss Calculation
 r_in = 3 * AU  								# Inner boundary radius
@@ -39,13 +39,17 @@ dusttogas = 1e-5								# Ratio of dust to gas (for calculating dust density fro
 vturb_factor = 6427.0								# Factor by which sqrt(tgas) is multiplied to determine gas turbulence velocities
 
 # RADMC3D settings (don't change without reading the documentation)
+incl_dust = 0									# Include dust in calculations
+incl_lines = 1									# Include lines in calculations
+nphot = 1e7									# Number of photon packages to split luminosity into
 scattering_mode_max = 0                                                         # Gives scattering information; if 0, isotropic scattering
+lines_mode = 1									# 1 = LTE
 tgas_eq_tdust = 0                                                               # Tells RADMC whether to interpret gas and dust temperatures as equal
-nphot = 1e7
+lines_widthmargin = 24								# Tolerance for line contribution
 n_threads = 12                                                                  # Defines number of parallel threads, larger = shorter runtime
 
 # Imaging settings
-max_log = 1                                                                    # Defines maximum for colorbar in logscale
+max_log = 3                                                                    # Defines maximum for colorbar in logscale
 wavelength = 4.69125225                                                         # Wavelength of desired transition for imaging, in micrometers
 offline_wavelength = 4.6                                                        # Wavelength for continuum subtraction
 inclination = 85                                                                # Viewing inclination from vertical, in degrees
