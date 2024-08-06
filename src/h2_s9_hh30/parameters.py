@@ -48,7 +48,7 @@ scattering_mode_max = 0                                                         
 lines_mode = 1									# 1 = LTE
 tgas_eq_tdust = 0                                                               # Tells RADMC whether to interpret gas and dust temperatures as equal
 lines_widthmargin = 24								# Tolerance for line contribution
-n_threads = 12                                                                  # Defines number of parallel threads, larger = shorter runtime
+n_threads = 4                                                                  # Defines number of parallel threads, larger = shorter runtime
 
 # Imaging settings
 max_log = 1                                                                   # Defines maximum for colorbar in logscale

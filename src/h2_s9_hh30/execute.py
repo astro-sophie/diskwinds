@@ -10,17 +10,11 @@ from generateimage import *
 os.system('make cleanall') 
 os.system('python3 master.py')
 os.system('python3 problem_setup.py')
-os.system('radmc3d mctherm setthreads 12')
+os.system(f'radmc3d mctherm setthreads {n_threads}')
 
 os.system(f'radmc3d image lambda {wavelength} incl {inclination} phi {phi} zoomau {low_x} {up_x} {low_y} {up_y} npixx {npixx} npixy {npixy}')
 img_online = readImage()
 image_data_online = img_online.image.flatten()  # units of ergs/s/cm^2/Hz/ster
-
-os.system(f'radmc3d image lambda {offline_wavelength} incl {inclination} phi {phi} zoomau {low_x} {up_x} {low_y} {up_y} npixx {npixx} npixy {npixy}')
-img_offline = readImage()
-image_data_offline = img_offline.image.flatten()  # units of ergs/s/cm^2/Hz/ster
-
-image_data = (image_data_online) - (image_data_offline)
 
 dist_pc = distance #from parameters.py, in pc
 c = 3e10 #cm/s
