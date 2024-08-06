@@ -10,7 +10,7 @@ from generateimage import *
 os.system('make cleanall') 
 os.system('python3 master.py')
 os.system('python3 problem_setup.py')
-os.system('radmc3d mctherm setthreads 4')
+os.system('radmc3d mctherm setthreads 12')
 
 os.system(f'radmc3d image lambda {wavelength} incl {inclination} phi {phi} zoomau {low_x} {up_x} {low_y} {up_y} npixx {npixx} npixy {npixy}')
 img_online = readImage()
@@ -26,7 +26,7 @@ dist_pc = distance #from parameters.py, in pc
 c = 3e10 #cm/s
 line_peak = wavelength # from parameters.py, in um
 conversion_factor = (img_online.sizepix_x*img_online.sizepix_y)/((dist_pc*pc)**2) # ergs/s/cm^2/Hz/ster to ergs/s/cm^2/Hz/pixel
-total_flux = np.sum(image_data_online)/(line_peak)*(c/(line_peak*1e-4))*conversion_factor # ergs/s/cm^2
+total_flux = np.sum(image_data_online)*conversion_factor # ergs/s/cm^2
 total_flux = f"{total_flux:.2e}"
 
 result = plotImage2(img_online, flux=total_flux, log=True, maxlog=max_log, cmap=cm.hot, bunit='snu', dpc=dist_pc, arcsec=True)
