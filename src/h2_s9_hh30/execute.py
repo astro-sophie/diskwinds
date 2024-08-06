@@ -12,7 +12,7 @@ os.system('python3 master.py')
 os.system('python3 problem_setup.py')
 os.system(f'radmc3d mctherm setthreads {n_threads}')
 
-os.system(f'radmc3d image lambda {wavelength} incl {inclination} phi {phi} zoomau {low_x} {up_x} {low_y} {up_y} npixx {npixx} npixy {npixy}')
+os.system(f'radmc3d image iline {iline} incl {inclination} phi {phi} zoomau {low_x} {up_x} {low_y} {up_y} npixx {npixx} npixy {npixy}')
 img_online = readImage()
 image_data_online = img_online.image.flatten()  # units of ergs/s/cm^2/Hz/ster
 
@@ -27,5 +27,3 @@ result = plotImage2(img_online, flux=total_flux, log=True, maxlog=max_log, cmap=
 
 plt.savefig('output.png')
 plt.close()
-
-file_path = "/home/reu24/hh30_data.py"

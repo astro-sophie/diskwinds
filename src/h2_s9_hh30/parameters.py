@@ -47,11 +47,12 @@ nphot = 1e7									# Number of photon packages to split luminosity into
 scattering_mode_max = 0                                                         # Gives scattering information; if 0, isotropic scattering
 lines_mode = 1									# 1 = LTE
 tgas_eq_tdust = 0                                                               # Tells RADMC whether to interpret gas and dust temperatures as equal
-lines_widthmargin = 24								# Tolerance for line contribution
+#lines_widthmargin = 24								# Tolerance for line contribution
 n_threads = 4                                                                  # Defines number of parallel threads, larger = shorter runtime
 
 # Imaging settings
 max_log = 1                                                                   # Defines maximum for colorbar in logscale
+iline = 10
 wavelength = 4.69125225                                                         # Wavelength of desired transition for imaging, in micrometers
 offline_wavelength = 4.6                                                        # Wavelength for continuum subtraction
 inclination = 85                                                                # Viewing inclination from vertical, in degrees
@@ -69,7 +70,7 @@ pstar = np.array([0., 0., 0.])							# Star position (lies at the origin if all 
 # Wavelength settings
 # Sets discrete wavelength points for the continuum radiative transfer calculations
 lam1, lam2, lam3, lam4, lam5 = 0.1, 4.5, 4.8, 25.0, 10000.0 				# This and the next line create a staggered wavelength list, with more values at lower wavelengths
-n12, n23, n34, n45 = 3000, 1000000, 3000, 3000							# Number of values between lam1 & lam2, between lam2 & lam3, between lam3 & lam4
+n12, n23, n34, n45 = 3000, 10000, 3000, 3000							# Number of values between lam1 & lam2, between lam2 & lam3, between lam3 & lam4
 lam12 = np.logspace(np.log10(lam1), np.log10(lam2), n12, endpoint=False)
 lam23 = np.logspace(np.log10(lam2), np.log10(lam3), n23, endpoint=False)
 lam34 = np.logspace(np.log10(lam3), np.log10(lam4), n34, endpoint=False)
