@@ -69,7 +69,7 @@ pstar = np.array([0., 0., 0.])							# Star position (lies at the origin if all 
 # Wavelength settings
 # Sets discrete wavelength points for the continuum radiative transfer calculations
 lam1, lam2, lam3, lam4, lam5 = 0.1, 4.5, 4.8, 25.0, 10000.0 				# This and the next line create a staggered wavelength list, with more values at lower wavelengths
-n12, n23, n34, n45 = 3000, 100000, 3000, 3000							# Number of values between lam1 & lam2, between lam2 & lam3, between lam3 & lam4
+n12, n23, n34, n45 = 3000, 1000000, 3000, 3000							# Number of values between lam1 & lam2, between lam2 & lam3, between lam3 & lam4
 lam12 = np.logspace(np.log10(lam1), np.log10(lam2), n12, endpoint=False)
 lam23 = np.logspace(np.log10(lam2), np.log10(lam3), n23, endpoint=False)
 lam34 = np.logspace(np.log10(lam3), np.log10(lam4), n34, endpoint=False)
