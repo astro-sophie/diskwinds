@@ -47,7 +47,7 @@ nphot = 1e7									# Number of photon packages to split luminosity into
 scattering_mode_max = 0                                                         # Gives scattering information; if 0, isotropic scattering
 lines_mode = 1									# 1 = LTE
 tgas_eq_tdust = 0                                                               # Tells RADMC whether to interpret gas and dust temperatures as equal
-#lines_widthmargin = 24								# Tolerance for line contribution
+lines_widthmargin = 24								# Tolerance for line contribution
 n_threads = 4                                                                  # Defines number of parallel threads, larger = shorter runtime
 
 # Imaging settings

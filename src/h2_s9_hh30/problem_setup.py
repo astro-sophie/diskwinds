@@ -165,7 +165,7 @@ try:
     	f.write(f'scattering_mode_max = {scattering_mode_max}\n')   # Put this to 1 for isotropic scattering
     	f.write(f'lines_mode = {lines_mode}\n')
     	f.write(f'tgas_eq_tdust = {tgas_eq_tdust}\n')	# tells radmc whether or not to read the dust_temperature.inp file and equate it to the gas temperature	
-#    	f.write('lines_widthmargin = %d'%(lines_widthmargin))
+    	f.write('lines_widthmargin = %d'%(lines_widthmargin))
     print("radmc3d.inp written successfully.")
 except Exception as e:
     print(f"Error writing radmc3d.inp: {e}")
