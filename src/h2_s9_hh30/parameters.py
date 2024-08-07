@@ -41,7 +41,7 @@ dusttogas = 1e-5								# Ratio of dust to gas (for calculating dust density fro
 vturb_factor = 6427.0								# Factor by which sqrt(tgas) is multiplied to determine gas turbulence velocities
 
 # RADMC3D settings (don't change without reading the documentation)
-incl_dust = 0									# Include dust in calculations
+incl_dust = 1									# Include dust in calculations
 incl_lines = 1									# Include lines in calculations
 nphot = 1e7									# Number of photon packages to split luminosity into
 scattering_mode_max = 0                                                         # Gives scattering information; if 0, isotropic scattering

@@ -124,7 +124,7 @@ def plotImage2(image=None, flux=0, arcsec=False, au=False, log=False, dpc=None, 
         ylab = 'Y [AU]'
     elif arcsec:
         x = image.x/1.496e13/dpc
-        y = (image.y/1.496e13/dpc) + ((max(image.y/1.496e13/dpc)-min(image.y/1.496e13/dpc))/2) + 0.1
+        y = (image.y/1.496e13/dpc) + ((max(image.y/1.496e13/dpc)-min(image.y/1.496e13/dpc))/2)+0.1
         xlab = 'Offset ["]'
         ylab = 'Offset ["]'
     else:
