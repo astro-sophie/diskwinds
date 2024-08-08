@@ -2,8 +2,6 @@ import subprocess
 import numpy as np
 from radmc3dPy.natconst import *
 
-constant_density = 1e-17
-
 # Constants
 AU = 1.493e13  									# AU in cm
 MS = 1.99e+33   								# Solar mass in grams
@@ -31,7 +29,7 @@ r_out = 6 * AU  								# Outer boundary radius
 k = ((p + 2) * M_dot_w) / (2 * np.pi * (r_out**(p + 2) - r_in**(p + 2))) 	# proportionality constant for mass loss rate
 
 # Grid parameters
-nx, ny, nz = 64, 64, 64							# Number of cells in each direction
+nx, ny, nz = 128, 128, 128							# Number of cells in each direction
 sizex = 420 * AU								# Size across the x direction
 sizey = 420 * AU								# Size across the y direction
 sizez = 420 * AU								# Size across the z direction
@@ -48,7 +46,7 @@ scattering_mode_max = 0                                                         
 lines_mode = 1									# 1 = LTE
 tgas_eq_tdust = 0                                                               # Tells RADMC whether to interpret gas and dust temperatures as equal
 lines_widthmargin = 24								# Tolerance for line contribution
-n_threads = 4                                                                  # Defines number of parallel threads, larger = shorter runtime
+n_threads = 15                                                                  # Defines number of parallel threads, larger = shorter runtime
 
 # Imaging settings
 max_log = 1                                                                   # Defines maximum for colorbar in logscale

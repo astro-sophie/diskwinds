@@ -149,5 +149,5 @@ def plotImage2(image=None, flux=0, arcsec=False, au=False, log=False, dpc=None, 
     plb.title(r'$\lambda$='+("%.5f"%image.wav[ifreq])+r'$\mu$m, F='+str(flux)+r'ergs/s/cm$^2$')
     cbar = plb.colorbar(implot)
     cbar.set_label(cb_label)
-#    plb.show()
+    plb.show()
     return {'implot':implot, 'cbar':cbar}

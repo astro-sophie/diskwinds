@@ -59,17 +59,17 @@ z = grid[nx+ny+2:nx+ny+nz+3]
 # Flux calculation
 flux = 0
 num = 0
-for i in range(0, nx):
-    for j in range(0, ny):
-        for k in range(0, nz):
-            Z = partitionfcn(levels, temp[i,j,k])
-            n_upper = numberdens[i,j,k]*(g_upper/Z)*np.exp(-T_upper/temp[i,j,k])
-            dV = (x[i+1]-x[i])*(y[j+1]-y[j])*(z[k+1]-z[k])
-            flux += n_upper*Aval*dE*dV/(4*np.pi*(dist*pc)**2)
-            num += 1
-            if (num%10000==0):
-            	print(f'{num}/{nx*ny*nz}')
-print(flux,'from theoretical expression')
+#for i in range(0, nx):
+#    for j in range(0, ny):
+#        for k in range(0, nz):
+#            Z = partitionfcn(levels, temp[i,j,k])
+#            n_upper = numberdens[i,j,k]*(g_upper/Z)*np.exp(-T_upper/temp[i,j,k])
+#            dV = (x[i+1]-x[i])*(y[j+1]-y[j])*(z[k+1]-z[k])
+#            flux += n_upper*Aval*dE*dV/(4*np.pi*(dist*pc)**2)
+#            num += 1
+#            if (num%10000==0):
+#            	print(f'{num}/{nx*ny*nz}')
+#print(flux,'from theoretical expression')
 
 
 f=np.loadtxt('spectrum.out',skiprows=3)
@@ -82,5 +82,6 @@ dlam=np.diff(lam)
 dlam=np.insert(dlam,0,dlam[0])
 dnu = dlam * c/(lam**2)
 print(np.sum(dnu*flux),' From RADMC model')
+plt.show()
 plt.savefig('spec.png')
 plt.close()
