@@ -13,11 +13,11 @@ GM_star = 6.674e25  								# Gravitational parameter for the star
 distance = 140									# Distance in parsecs
 
 # Wind Parameters
-M_dot_w = 1e20  								# Wind mass loss rate in grams/second
+M_dot_w = 2e19  								# Wind mass loss rate in grams/second
 lmbda = 1.6     								# Alfven lever parameter
 d = -25 * AU     								# Distance of wind source point below the origin
-p = 3.4959999999999996  							# Exponent in mass loss rate calculation
-temp0 = 1500									# Wind temperature (constant for now)
+p = -0.5 #3.4959999999999996  							# Exponent in mass loss rate calculation
+temp0 = 2000									# Wind temperature (constant for now)
 
 # Line parameters 
 molecule_name = "h2"

@@ -48,11 +48,11 @@ def wind_density(m_dot_wi, vp_wi_l, delta, d, D_wi_l):
     	for j in range(0,ny):
     		for k in range(0,nz):
     			if wind_density[i,j,k] != 0:
-    				vals[i,j,k] = (1e8)/((Z[i,j,k]/AU)**2)
+    				vals[i,j,k] = (1e8)/(abs(Z[i,j,k]/AU)**2)
     			else:
     				vals[i,j,k] = 0
-    vals = vals*(1e-20)
-    return vals
+    vals = vals*(10**-20)*(4*1e6)
+    return wind_density
 
 # Main Execution
 try:
@@ -67,6 +67,11 @@ try:
     # temp0_array = calculate_temperature(r_base, z_values)
     temp0_array = np.full((expected_entries,), temp0)
     density = wind_density(m_dot_wi, vp_wi_l, delta, d, D_wi_l)
+
+    for i in range(0, nx):
+        for j in range(0, ny):
+            if density[i,j,30]>0:
+                print(density[i,j,30])
 
     # Save the results to CSV files
     density_flattened = density.flatten()
